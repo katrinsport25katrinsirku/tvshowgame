@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Игра</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            text-align: center;
+        }
+
+        button {
+            background-color: rgb(183, 139, 92);
+            font-family: Proxima Nova;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1;
+            margin-right: 14px;
+            z-index: 0;
+            display: inline-block;
+            min-width: 120px;
+            height: 42px;
+            padding: 0 27px;
+            cursor: pointer;
+            word-spacing: -.5px;
+            color: #fff;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            outline: none;
+            white-space: nowrap;
+            margin-top: 30px
+        }
+
+        #results {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <h1>
+            Сколько дней своей жизни вы потратите на сериал?
+        </h1>
+        <div>
+            <p>Для начала, введите количество сезонов:</p>
+            <input id="seasons_count" type="number" />
+        </div>
+        <div>
+            <p>Далее, введите количество серий в сезоне:</p>
+            <input id="episodes_count" type="number" />
+        </div>
+        <div>
+            <p>И напоследок, введите продолжительность серии (в минутах):</p>
+            <input id="minutes_count" type="number"/>
+        </div>
+        <div>
+            <button onclick="count()">
+                Расчитать!
+            </button>
+        </div>
+
+    </div>
+    <div id="results">
+        <h3>Вы потратите на сериал из 
+            <span id="seasons_count_result"></span> сезонов по 
+            <span id="episodes_count_result"></span> сериий в каждом, продолжительностью
+            <span id="minutes_count_result"></span> минут:
+        </h3>
+        <h1 id="total_result"></h1>
+        <div>
+            <button onclick="location.href=''">
+                    Еще раз!
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        function count () {
+            var seasonsCount = document.getElementById('seasons_count').value
+            var episodesCount = document.getElementById('episodes_count').value
+            var minutesCount = document.getElementById('minutes_count').value
+            
+            var total = seasonsCount * episodesCount * minutesCount
+            
+            var hours = Math.floor( total / 60);          
+            var minutes = total % 60;
+
+            document.getElementById('seasons_count_result').innerHTML = seasonsCount
+            document.getElementById('episodes_count_result').innerHTML = episodesCount
+            document.getElementById('minutes_count_result').innerHTML = minutesCount
+            document.getElementById('total_result').innerHTML = hours + ' часов и ' + minutes + ' минут'
+
+            document.getElementById('game').style['display'] = 'none';
+            document.getElementById('results').style['display'] = 'block';
+        }  
+    </script>
+</body>
+</html>
